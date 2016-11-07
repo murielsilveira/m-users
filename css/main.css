@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 5vh auto;
+}
+
+.users-container {
+    margin-bottom: 5vh;
+}
+
+.user {
+    line-height: 2;
+    padding: 5px;
+}
+
+.user:hover {
+    background: #efefef;
+}
+
+.user-first-name {
+    color: black;
+    font-size: 1.2em;
+}
+
+.user-last-name {
+    color: gray;
+    font-size: 1.2em;
+}
+
+.user-created-at {
+    margin-top: -5px;
+    color: gray;
+    font-size: 0.7em;
+}
+
+.user-edit-btn {
+    float: right;
+}
+
+.user-locked .user-first-name,
+.user-locked .user-last-name {
+    text-decoration: line-through;
+}
+
+/*
+    Edit Page
+*/
+
+.edit-container {
+    text-align: center;
+}
+
+.label {
+    display: block;
+    margin-bottom: 20px;
+}
