@@ -1,6 +1,6 @@
 class UserGateway {
     constructor() {
-        this._BASE_URL = 'http://js-assessment-backend.herokuapp.com/'
+        this._BASE_URL = 'https://js-assessment-backend.herokuapp.com/'
     }
 
     getAllUsers() {
