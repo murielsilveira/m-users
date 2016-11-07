@@ -1,6 +1,6 @@
 class MUser extends HTMLElement {
     static get observedAttributes() {
-        return ['status']
+        return ['status', 'firstName']
     }
     
     constructor() {
