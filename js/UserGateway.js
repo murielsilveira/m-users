@@ -16,6 +16,15 @@ class UserGateway {
                 }))
                 return Promise.resolve(users)
             })
+            .then(users => {
+                return Promise.resolve(users.sort((a, b) => {
+                    const nameA = a.firstName + a.lastName
+                    const nameB = b.firstName + b.lastName
+                    if (nameA < nameB) return -1
+                    if (nameA > nameB) return 1
+                    return 0
+                }))
+            })
     }
 
     getUser(userId) {
