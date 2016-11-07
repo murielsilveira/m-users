@@ -8,8 +8,11 @@ class UserGateway {
             .then(usersResponse => usersResponse.json())
             .then(rawUsers => {
                 const users = rawUsers.map(rawUser => ({
+                    userId: rawUser.id,
                     status: rawUser.status,
                     firstName: rawUser.first_name,
+                    lastName: rawUser.last_name,
+                    createdAt: rawUser.created_at,
                 }))
                 return Promise.resolve(users)
             })
