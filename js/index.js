@@ -30,6 +30,11 @@ class Index {
             this._activateUser(event.target)
             event.preventDefault()
         })
+
+        this._usersContainer.addEventListener('edit-user', event => {
+            document.location = `./user.html?userId=${event.target.userId}`
+            event.preventDefault()
+        })
     }
     
     _fetchUsers() {
