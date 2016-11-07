@@ -32,22 +32,16 @@ class Index {
     }
 
     _showUsers(users) {
-        let usersElements = ''
+        const fragment = document.createDocumentFragment() 
 
         users.forEach(user => {
-            let userLockedClass = ''
-            if (user.status === 'locked')
-                userLockedClass = 'user-locked'
-
-            usersElements += `<div class="user ${userLockedClass}">
-                <span class="user-first-name">${user.first_name}</span>
-                <span class="user-last-name">${user.last_name}</span>
-                <a class="user-edit-btn" href="./edit-user.html?userId=${user.id}">edit</a>
-                <div class="user-created-at">${new Date(user.created_at).toGMTString()}</div>
-            </div>`
+            const mUser = new MUser()
+            mUser.status = user.status
+            fragment.appendChild(mUser)
         })
 
-        this._usersContainer.innerHTML = usersElements
+        this._usersContainer.innerHTML = ''
+        this._usersContainer.appendChild(fragment)
     }
 
     _buildPagination() {
