@@ -29,7 +29,7 @@ class EditUser {
                 lastName
             }).then(() => {
                 console.log('user saved')
-                // go to index?
+                document.location = './index.html'
             })
         } else {
             console.log('invalid form')
