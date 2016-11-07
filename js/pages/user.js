@@ -45,9 +45,9 @@ class EditUser {
     }
 
     _renderForm(user) {
-        this._form.elements.first_name.value = user.first_name
-        this._form.elements.last_name.value = user.last_name
-        this._form.elements.user_id.value = user.id
+        this._form.elements.first_name.value = user.firstName
+        this._form.elements.last_name.value = user.lastName
+        this._form.elements.user_id.value = user.userId
     }
 
     _getUserId() {

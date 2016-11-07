@@ -7,14 +7,9 @@ class UserGateway {
         return fetch(this._BASE_URL + 'users.json')
             .then(usersResponse => usersResponse.json())
             .then(rawUsers => {
-                const users = rawUsers.map(rawUser => ({
-                    userId: rawUser.id,
-                    status: rawUser.status,
-                    firstName: rawUser.first_name,
-                    lastName: rawUser.last_name,
-                    createdAt: rawUser.created_at,
-                }))
-                return Promise.resolve(users)
+                return Promise.resolve(
+                    rawUsers.map(this._normalizeUser)
+                )
             })
             .then(users => {
                 return Promise.resolve(users.sort((a, b) => {
@@ -30,6 +25,19 @@ class UserGateway {
     getUser(userId) {
         return fetch(this._BASE_URL + `users/${userId}.json`)
             .then(userResponse => userResponse.json())
+            .then(rawUser => {
+                return Promise.resolve(this._normalizeUser(rawUser))
+            })
+    }
+
+    _normalizeUser(rawUser) {
+        return {
+            userId: rawUser.id,
+            status: rawUser.status,
+            firstName: rawUser.first_name,
+            lastName: rawUser.last_name,
+            createdAt: rawUser.created_at,
+        }
     }
 
     updateUser(user) {
