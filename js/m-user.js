@@ -65,7 +65,7 @@ class MUser extends HTMLElement {
             <div class="user-edit-panel">
                 <a class="user-lock-action" href="#">lock</a>
                 <a class="user-activate-action" href="#">activate</a>
-                <a href="./edit-user.html?userId=${this.userId}">edit</a>
+                <a href="./user.html?userId=${this.userId}">edit</a>
             </div>
             <div class="user-created-at">${new Date(this.createdAt).toGMTString()}</div>
         </div>`

@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Edit User</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div class="container edit-container">
+        <form class="user-form">
+            <label class="label" for="first-name-label-id">
+                First Name
+                <input type="text" id="first-name-label-id" name="first_name" required/>
+            </label>
+            <label class="label" for="last-name-label-id">
+                Last Name
+                <input type="text" id="last-name-label-id" name="last_name" required/>
+            </label>
+            <input type="hidden" name="user_id"/>
+            <input type="submit" value="Save"/>
+        </form>
+    </div>
+
+    <script defer src="./js/UserGateway.js"></script>
+    <script defer src="./js/edit-user.js"></script>
+</body>
+</html>

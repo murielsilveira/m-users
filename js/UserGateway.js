@@ -59,4 +59,19 @@ class UserGateway {
             body: JSON.stringify(putData)
         })
     }
+
+    createUser(user) {
+        const postData = {
+            'first_name': user.firstName,
+            'last_name': user.lastName,
+            'status': 'active'
+        }
+        return fetch(this._BASE_URL + 'users/', {
+            method: 'post',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(postData)
+        })
+    }
 }
