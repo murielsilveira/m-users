@@ -43,8 +43,24 @@ html, body {
     font-size: 0.7em;
 }
 
-.user-edit-btn {
+.user-edit-panel {
     float: right;
+}
+
+.user-lock-action {
+    display: inline;
+}
+
+.user-activate-action {
+    display: none;
+}
+
+.user-locked .user-lock-action {
+    display: none;
+}
+
+.user-locked .user-activate-action {
+    display: inline;
 }
 
 .user-locked .user-first-name,

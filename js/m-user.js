@@ -8,6 +8,7 @@ class MUser extends HTMLElement {
     }
 
     connectedCallback() {
+        this._addEventListeners()
         this._render()
     }
 
@@ -34,6 +35,24 @@ class MUser extends HTMLElement {
         }
     }
 
+    _addEventListeners() {
+        this.addEventListener('click', event => {
+            if (event.target.classList.contains('user-lock-action')) {
+                this.dispatchEvent(
+                    new Event('lock-user', { bubbles: true, cancelable: true })
+                )
+                event.preventDefault()
+            }
+
+            if (event.target.classList.contains('user-activate-action')) {
+                this.dispatchEvent(
+                    new Event('activate-user', { bubbles: true, cancelable: true })
+                )
+                event.preventDefault()
+            }
+        })
+    }
+
     _render() {
         // render it's being called multiple times when I change
         // it's properties at the beginning. at least it's not on the DOM yet
@@ -43,7 +62,11 @@ class MUser extends HTMLElement {
         this.innerHTML = `<div class="user ${userLockedClass}">
             <span class="user-first-name">${this.firstName}</span>
             <span class="user-last-name">${this.lastName}</span>
-            <a class="user-edit-btn" href="./edit-user.html?userId=${this.userId}">edit</a>
+            <div class="user-edit-panel">
+                <a class="user-lock-action" href="#">lock</a>
+                <a class="user-activate-action" href="#">activate</a>
+                <a href="./edit-user.html?userId=${this.userId}">edit</a>
+            </div>
             <div class="user-created-at">${new Date(this.createdAt).toGMTString()}</div>
         </div>`
     }

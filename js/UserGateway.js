@@ -25,11 +25,24 @@ class UserGateway {
 
     updateUser(user) {
         const putData = {
-            "first_name": user.firstName,
-            "last_name": user.lastName
+            'first_name': user.firstName,
+            'last_name': user.lastName
         }
+        return this._update(user.userId, putData)
+    }
 
-        return fetch(this._BASE_URL + `users/${user.userId}/`, {
+    lockUser(userId) {
+        const putData = { 'status': 'locked' }
+        return this._update(userId, putData)
+    }
+
+    activateUser(userId) {
+        const putData = { 'status': 'active' }
+        return this._update(userId, putData)
+    }
+
+    _update(userId, putData) {
+        return fetch(this._BASE_URL + `users/${userId}/`, {
             method: 'put',
             headers: new Headers({
                 'Content-Type': 'application/json'

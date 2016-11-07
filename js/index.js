@@ -14,12 +14,22 @@ class Index {
     }
 
     _addEventListeners() {
-        this._pagination.addEventListener('click', function(event){
+        this._pagination.addEventListener('click', event => {
             if (event.target.classList.contains('page')) {
                 this._paginateTo(parseInt(event.target.getAttribute('pageNumber')))
                 event.preventDefault()
             }
-        }.bind(this))
+        })
+
+        this._usersContainer.addEventListener('lock-user', event => {
+            this._lockUser(event.target)
+            event.preventDefault()
+        })
+
+        this._usersContainer.addEventListener('activate-user', event => {
+            this._activateUser(event.target)
+            event.preventDefault()
+        })
     }
     
     _fetchUsers() {
@@ -29,6 +39,16 @@ class Index {
                 this._showUsers(this._usersList.slice(0, 10))
                 this._buildPagination()
             })
+    }
+
+    _lockUser(mUser) {
+        this._userGateway.lockUser(mUser.userId)
+            .then(_ => mUser.status = 'locked')
+    }
+
+    _activateUser(mUser) {
+        this._userGateway.activateUser(mUser.userId)
+            .then(_ => mUser.status = 'active')
     }
 
     _showUsers(users) {
@@ -65,7 +85,6 @@ class Index {
         const start = end - 10
         this._showUsers(this._usersList.slice(start, end))
     }
-
 }
 
 new Index().execute()
