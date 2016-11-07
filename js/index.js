@@ -4,6 +4,8 @@ class Index {
         this._pagination = document.querySelector('.pagination')
         this._usersList = []
 
+        this._userGateway = new UserGateway()
+
         this._addEventListeners()
     }
 
@@ -21,8 +23,7 @@ class Index {
     }
     
     _fetchUsers() {
-        fetch('http://js-assessment-backend.herokuapp.com/users.json')
-            .then(usersResponse => usersResponse.json())
+        this._userGateway.getAllUsers()
             .then(users => {
                 this._usersList = users
                 this._showUsers(this._usersList.slice(0, 10))

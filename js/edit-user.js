@@ -1,14 +1,14 @@
 class EditUser {
     constructor() {
         this.form = document.querySelector('.user-form')
+        this._userGateway = new UserGateway()
 
         this._addEventListeners()
     }
 
     execute() {
         const userId = this._getUserId()
-        fetch(`http://js-assessment-backend.herokuapp.com/users/${userId}.json`)
-            .then(userResponse => userResponse.json())
+        this._userGateway.getUser(userId)
             .then(user => this._renderForm(user))
     }
 
@@ -23,32 +23,19 @@ class EditUser {
         const userId = this.form.elements.user_id.value
 
         if (firstName && lastName) {
-            this._saveUser({firstName, lastName, userId})
+            this._userGateway.updateUser({
+                userId,
+                firstName,
+                lastName
+            }).then(() => {
+                console.log('user saved')
+                // go to index?
+            })
         } else {
             console.log('invalid form')
         }
 
         event.preventDefault()
-    }
-
-    _saveUser(userFormData) {
-        // POST http://js-assessment-backend.herokuapp.com/users
-        const data = {
-            "first_name": userFormData.firstName,
-            "last_name": userFormData.lastName
-        }
-
-        fetch(`http://js-assessment-backend.herokuapp.com/users/${userFormData.userId}/`, {
-            method: 'put',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify(data)
-        }).then(r => {
-            console.log('saved')
-        }).catch(err => {
-            console.log('didnt save')
-        })
     }
 
     _renderForm(user) {
