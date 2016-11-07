@@ -26,12 +26,10 @@ class MUser extends HTMLElement {
         // it's properties at the beginning.
         // at least it's not on the DOW yet
 
-        let userLockedClass = ''
-        if (this.isLocked)
-            userLockedClass = 'user-locked'
+        let userLockedClass = this.isLocked ? 'user-locked' : ''
 
         this.innerHTML = `<div class="user ${userLockedClass}">
-            <span class="user-first-name">Muriel</span>
+            <span class="user-first-name">${this.firstName}</span>
             <span class="user-last-name">Silveira</span>
             <a class="user-edit-btn" href="./edit-user.html?userId=55">edit</a>
             <div class="user-created-at">${new Date().toGMTString()}</div>
@@ -49,6 +47,15 @@ class MUser extends HTMLElement {
 
     get isLocked() {
         return this.status === 'locked'
+    }
+
+    get firstName() {
+        return this._firstName || ''
+    }
+
+    set firstName(value) {
+        this._firstName = value
+        this.setAttribute('firstName', this._firstName)
     }
 }
 

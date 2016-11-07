@@ -6,6 +6,13 @@ class UserGateway {
     getAllUsers() {
         return fetch(this._BASE_URL + 'users.json')
             .then(usersResponse => usersResponse.json())
+            .then(rawUsers => {
+                const users = rawUsers.map(rawUser => ({
+                    status: rawUser.status,
+                    firstName: rawUser.first_name,
+                }))
+                return Promise.resolve(users)
+            })
     }
 
     getUser(userId) {

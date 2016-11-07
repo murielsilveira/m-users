@@ -37,6 +37,7 @@ class Index {
         users.forEach(user => {
             const mUser = new MUser()
             mUser.status = user.status
+            mUser.firstName = user.firstName
             fragment.appendChild(mUser)
         })
 
